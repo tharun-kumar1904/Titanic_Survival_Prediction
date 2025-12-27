@@ -43,6 +43,7 @@ Raw datasets are stored in:
 data/raw/
 ```
 
+
 Processed features are generated dynamically during preprocessing and training.
 
 ---
@@ -52,14 +53,14 @@ The following features are engineered to improve model performance:
 
 - **FamilySize** = SibSp + Parch + 1  
 - **IsAlone**: Indicates whether the passenger traveled alone  
-- **Title Extraction** from names (Mr, Mrs, Miss, Rare)  
+- **Title Extraction** from passenger names (Mr, Mrs, Miss, Rare)  
 - **HasCabin**: Binary indicator for cabin availability  
 
 Categorical variables are encoded using one-hot encoding:
-- Sex
-- Embarked
-- Pclass
-- Title
+- Sex  
+- Embarked  
+- Pclass  
+- Title  
 
 High-missing or low-utility columns (Ticket, Cabin) are dropped after feature extraction.
 
@@ -71,76 +72,81 @@ EDA is performed in:
 notebooks/EDA_Titanic.ipynb
 ```
 
-### Key Insights:
-- Females had significantly higher survival rates
-- First-class passengers survived more often
-- Children had higher survival probability
-- Fare and passenger class strongly influenced survival
-- Strong interaction exists between gender and passenger class
+
+### Key Insights
+- Female passengers had significantly higher survival rates  
+- First-class passengers survived more often  
+- Children showed higher survival probability  
+- Fare and passenger class strongly influenced survival  
+- Strong interaction exists between gender and passenger class  
 
 ---
 
 ## 🤖 Machine Learning Models
-The following models are trained and evaluated:
+The following models were trained and evaluated:
 
-- Logistic Regression
-- Random Forest Classifier
-- Support Vector Machine (SVM)
+- Logistic Regression  
+- Random Forest Classifier  
+- Support Vector Machine (SVM)  
 
-### Evaluation Metrics:
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- Confusion Matrix
-- ROC-AUC
-- Threshold tuning for F1 optimization
+---
 
-The final selected model is saved to:
-```
-models/titanic_model.joblib
-```
+## 📐 Evaluation Metrics
+Models were evaluated using multiple complementary metrics to ensure balanced and reliable performance:
+
+- **Accuracy** – Overall correctness of predictions  
+- **Precision** – Reliability of predicted survivors  
+- **Recall** – Ability to correctly identify actual survivors  
+- **F1-Score** – Balance between precision and recall  
+- **Confusion Matrix** – Detailed error analysis  
+- **ROC-AUC** – Model discrimination capability  
+- **Optimized Probability Threshold** – Tuned to maximize F1-score  
 
 ---
 
 ## 📈 Model Performance Summary
-The best-performing model (Logistic Regression) achieved:
+The final selected model (Logistic Regression with threshold optimization) achieved the following results on the test set:
 
-- **ROC-AUC:** ~0.87  
-- **Accuracy:** ~0.84  
-- **F1-Score:** ~0.80  
+- **ROC-AUC:** 0.87  
+- **Accuracy:** 0.84  
+- **Precision:** 0.77  
+- **Recall:** 0.83  
+- **F1-Score:** 0.80  
+- **Optimal Classification Threshold:** 0.52  
 
-### 🔎 Why performance plateaus below 90%
-The Titanic dataset is small and noisy, with many unobserved factors influencing survival.
-Without introducing data leakage or rule-based heuristics, performance naturally plateaus
-around this range. The project prioritizes **ethical evaluation, generalization, and
-real-world reliability** over artificially inflated metrics.
+The model demonstrates strong generalization and balanced performance across all evaluation metrics.
+
+Saved artifacts:
+The final selected model is saved to:
+```
+models/titanic_model.joblib
+models/feature_columns.joblib
+models/best_threshold.joblib
+```
 
 ---
-
 ## 🌐 Streamlit Web Application
-The Streamlit app enables users to:
+The Streamlit application enables interactive exploration and prediction.
 
+### Features
 - Filter passengers by:
-  - Passenger Class
-  - Gender
-  - Age Range
-- View predicted survival probabilities
-- Sort passengers based on risk levels
-- Explore survival patterns interactively
+  - Passenger Class  
+  - Gender  
+  - Age Range  
+- View predicted survival probabilities  
+- Sort passengers based on risk levels  
+- Explore survival patterns through interactive visualizations  
 
 ### ▶️ Run Streamlit App
+
+```bash
+streamlit run streamlit_app/app.py
+
 ```bash
 streamlit run streamlit_app/app.py
 ```
 
-Access the app at:
-```
-http://localhost:8501
-```
-
 ---
-
 ## 🔄 Kafka – Real-Time Prediction (Optional)
 Kafka is used to simulate real-time passenger data streaming.
 
@@ -170,11 +176,6 @@ docker build -t titanic-app -f docker/Dockerfile .
 Run container:
 ```bash
 docker run -p 8501:8501 titanic-app
-```
-
-Access:
-```
-http://localhost:8501
 ```
 
 ---
