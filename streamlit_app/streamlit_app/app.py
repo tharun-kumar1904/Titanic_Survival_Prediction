@@ -685,9 +685,38 @@ with tab2:
         med_risk = ((filtered["Survival Probability"] >= 0.4) & (filtered["Survival Probability"] < 0.7)).sum()
         low_risk = (filtered["Survival Probability"] < 0.4).sum()
 
-        col1.metric("🟢 High Survival (≥70%)", f"{high_risk} passengers")
-        col2.metric("🟡 Medium Survival (40-70%)", f"{med_risk} passengers")
-        col3.metric("🔴 Low Survival (<40%)", f"{low_risk} passengers")
+        with col1:
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1.2rem; border-radius: 12px; border: 2px solid {border_color}; text-align:center;">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.95rem;">🟢 High Survival (≥70%)</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.6rem; margin-top:0.4rem;">{high_risk} passengers</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+        with col2:
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1.2rem; border-radius: 12px; border: 2px solid {border_color}; text-align:center;">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.95rem;">🟡 Medium Survival (40-70%)</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.6rem; margin-top:0.4rem;">{med_risk} passengers</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+        with col3:
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1.2rem; border-radius: 12px; border: 2px solid {border_color}; text-align:center;">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.95rem;">🔴 Low Survival (&lt;40%)</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.6rem; margin-top:0.4rem;">{low_risk} passengers</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 # ==============================
 # TAB 3: INSIGHTS
