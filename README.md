@@ -206,15 +206,15 @@ Titanic_Survival_Prediction/
 ---
 
 ## 🎥 Video Demonstration
-A 5–10 minute video demonstration includes:
+The 9 minute video demonstration includes:
 - Project overview
 - EDA walkthrough
 - Model training & evaluation
 - Streamlit UI demo
-- Kafka real-time prediction (optional)
 
-(Video link to be added)
+Youtube Link : https://youtu.be/v39DD87l7Q0
 
+Drive link : https://drive.google.com/file/d/1eTl1ICZBWPKdTorpkqDT4hjkOsfjl8mh/view?usp=sharing
 ---
 
 ## 🧰 Technologies Used
@@ -227,8 +227,6 @@ A 5–10 minute video demonstration includes:
 - Docker
 
 ---
-
-Youtube Link : https://youtu.be/v39DD87l7Q0
 
 ## ✅ Final Notes
 This project follows clean coding practices, modular design, and reproducible
