@@ -245,6 +245,63 @@ st.markdown(
         color: {text_primary} !important;
     }}
 
+    /* Select/Dropdown styling */
+    div[data-baseweb="select"] span {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-baseweb="select"] div {{
+        color: {text_primary} !important;
+    }}
+
+    /* Radio button styling */
+    div[data-baseweb="radio"] label {{
+        color: {text_primary} !important;
+        font-weight: 600 !important;
+    }}
+
+    div[data-baseweb="radio"] span {{
+        color: {text_primary} !important;
+    }}
+
+    /* Selectbox options visibility */
+    div[data-baseweb="select"] > div > div {{
+        color: {text_primary} !important;
+    }}
+
+    /* Dropdown menu items */
+    ul[data-baseweb="menu"] li {{
+        color: {text_primary} !important;
+    }}
+
+    ul[data-baseweb="menu"] li span {{
+        color: {text_primary} !important;
+    }}
+
+    /* Radio button options */
+    [role="radio"] + span {{
+        color: {text_primary} !important;
+        font-weight: 600 !important;
+    }}
+
+    [role="radio"] ~ span {{
+        color: {text_primary} !important;
+    }}
+
+    /* General text in form elements */
+    div[data-baseweb="base-select"] [role="option"] {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stSelectbox"] div span {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stRadio"] div span {{
+        color: {text_primary} !important;
+        font-weight: 600 !important;
+    }}
+
     .stTabs [data-baseweb="tab-list"] {{
         gap: 12px;
         background: {bg_card};
@@ -317,8 +374,114 @@ st.markdown(
     }}
 
     div[data-baseweb="select"] {{
-        border: 2px solid {border_color};
-        background: {bg_card};
+        border: 2px solid {border_color} !important;
+        background: {bg_card} !important;
+    }}
+
+    div[data-baseweb="select"] > div {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-baseweb="select"] span {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-baseweb="select"] input {{
+        color: {text_primary} !important;
+    }}
+
+    /* Selectbox dropdown text */
+    [data-baseweb="select"] [role="option"] {{
+        color: {text_primary} !important;
+        background-color: {bg_card} !important;
+    }}
+
+    [data-baseweb="select"] [role="option"]:hover {{
+        background-color: {border_color} !important;
+        color: {text_primary} !important;
+    }}
+
+    /* Selected value in selectbox */
+    div[data-testid="stSelectbox"] {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stSelectbox"] div {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stSelectbox"] span {{
+        color: {text_primary} !important;
+    }}
+
+    /* Override selectbox placeholder and value text */
+    [data-baseweb="select"] > div > div > div {{
+        color: {text_primary} !important;
+    }}
+
+    /* Make selectbox text visible - strongest override */
+    div[role="combobox"] {{
+        color: {text_primary} !important;
+    }}
+
+    div[role="combobox"] * {{
+        color: {text_primary} !important;
+    }}
+
+    /* Selectbox input field text */
+    input[type="text"][role="combobox"] {{
+        color: {text_primary} !important;
+    }}
+
+    /* All text nodes in selectbox */
+    [data-baseweb="select"] {{
+        color: {text_primary} !important;
+    }}
+
+    [data-baseweb="select"] * {{
+        color: {text_primary} !important;
+    }}
+
+    /* Force text color in select field */
+    [data-baseweb="select"] [data-baseweb] {{
+        color: {text_primary} !important;
+    }}
+
+    /* Selectbox value display */
+    div[data-testid="stSelectbox"] [data-baseweb="select"] div {{
+        color: {text_primary} !important;
+        -webkit-text-fill-color: {text_primary} !important;
+    }}
+
+    /* Radio button styles */
+    div[data-testid="stRadio"] {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stRadio"] label {{
+        color: {text_primary} !important;
+        font-weight: 600 !important;
+    }}
+
+    div[data-testid="stRadio"] span {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-testid="stRadio"] [role="radio"] {{
+        accent-color: #6366f1 !important;
+    }}
+
+    div[data-testid="stRadio"] [role="radio"] + label {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-baseweb="radio"] span {{
+        color: {text_primary} !important;
+    }}
+
+    div[data-baseweb="radio"] label {{
+        color: {text_primary} !important;
+        font-weight: 600 !important;
     }}
 
     div[data-baseweb="slider"] [role="slider"] {{
@@ -926,6 +1089,124 @@ with tab4:
                     """,
                     unsafe_allow_html=True,
                 )
+
+        st.markdown("---")
+        st.markdown("#### 📊 Detailed Passenger Data with Sorting Options")
+
+        # Sorting options with custom HTML and buttons
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown(f"<p style='color: {text_primary}; font-weight: 700; margin: 0 0 0.8rem 0;'>🔄 Sort By</p>", unsafe_allow_html=True)
+            sort_options = ["Survival Probability", "Age", "Name", "Passenger Class", "Gender"]
+            
+            # Create custom button group for sort by
+            sort_cols = st.columns(len(sort_options))
+            sort_by = "Survival Probability"  # default
+            for idx, option in enumerate(sort_options):
+                with sort_cols[idx]:
+                    if st.button(option, key=f"sort_by_{idx}", use_container_width=True):
+                        sort_by = option
+
+        with col2:
+            st.markdown(f"<p style='color: {text_primary}; font-weight: 700; margin: 0 0 0.8rem 0;'>📈 Sort Order</p>", unsafe_allow_html=True)
+            order_cols = st.columns(2)
+            sort_order = "Descending"  # default
+            
+            with order_cols[0]:
+                if st.button("Descending ↓", key="sort_desc", use_container_width=True):
+                    sort_order = "Descending"
+            
+            with order_cols[1]:
+                if st.button("Ascending ↑", key="sort_asc", use_container_width=True):
+                    sort_order = "Ascending"
+
+        # Determine sort column
+        sort_column_map = {
+            "Survival Probability": "Survival Probability",
+            "Age": "Age",
+            "Name": "Name",
+            "Passenger Class": "Pclass",
+            "Gender": "Sex"
+        }
+        
+        sort_column = sort_column_map[sort_by]
+        ascending = "Ascending" in sort_order
+
+        # Create display dataframe with sorting
+        display_analysis_df = (
+            filtered[
+                ["PassengerId", "Name", "Sex", "Age", "Pclass", "Survival Probability", "Actual Survived"]
+            ]
+            .sort_values(sort_column, ascending=ascending)
+            .reset_index(drop=True)
+        )
+
+        # Format and display
+        st.dataframe(
+            display_analysis_df.style.format({
+                "Survival Probability": "{:.1%}",
+                "Age": "{:.0f}",
+                "Actual Survived": "{:.0f}"
+            }).background_gradient(
+                subset=["Survival Probability"], cmap="RdYlGn", vmin=0, vmax=1
+            ),
+            use_container_width=True,
+            height=450,
+        )
+
+        # Summary statistics
+        st.markdown("---")
+        st.markdown("#### 📈 Quick Stats for Current View")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1rem; border-radius: 12px; border: 2px solid {border_color};">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.9rem;">📊 Total Shown</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.8rem;">{len(display_analysis_df)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+        with col2:
+            avg_surv = display_analysis_df["Survival Probability"].mean()
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1rem; border-radius: 12px; border: 2px solid {border_color};">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.9rem;">💚 Avg Survival</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.8rem;">{avg_surv:.1%}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+        with col3:
+            avg_age_view = display_analysis_df["Age"].mean()
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1rem; border-radius: 12px; border: 2px solid {border_color};">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.9rem;">📅 Avg Age</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.8rem;">{avg_age_view:.1f}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+        with col4:
+            actual_survivors = display_analysis_df["Actual Survived"].sum()
+            st.markdown(
+                f"""
+                <div style="background: {bg_card}; padding: 1rem; border-radius: 12px; border: 2px solid {border_color};">
+                    <div style="color: {text_primary}; font-weight:700; font-size:0.9rem;">✅ Survived</div>
+                    <div style="color: {text_primary}; font-weight:800; font-size:1.8rem;">{int(actual_survivors)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 # --------------------------------------------------
 # FOOTER
