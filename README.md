@@ -140,10 +140,7 @@ The Streamlit application enables interactive exploration and prediction.
 ### ▶️ Run Streamlit App
 
 ```bash
-streamlit run streamlit_app/app.py
-
-```bash
-streamlit run streamlit_app/app.py
+https://titanic-ml-survival-predictor.streamlit.app/
 ```
 
 ---
