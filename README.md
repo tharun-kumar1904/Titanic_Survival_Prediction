@@ -228,6 +228,8 @@ A 5–10 minute video demonstration includes:
 
 ---
 
+Youtube Link : https://youtu.be/v39DD87l7Q0
+
 ## ✅ Final Notes
 This project follows clean coding practices, modular design, and reproducible
 machine learning workflows aligned with real-world ML deployment standards.
